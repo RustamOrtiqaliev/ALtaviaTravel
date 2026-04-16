@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Altavia Travel - Sayohat va Chiptalar | O'zbekiston</title>
+<meta name="description" content="Altavia Travel — O'zbekistondagi premium turizm agentligi. Antaliya, Dubay va dunyo bo'ylab unutilmas sayohatlar va arzon aviachiptalar.">
+
+<meta property="og:title" content="Altavia Travel - Sayohat va Chiptalar">
+<meta property="og:description" content="Orzuingizdagi sayohatni biz bilan boshlang.">
+<meta property="og:image" content="https://altaviatraveluz.netlify.app/logo.jpg"> <meta property="og:url" content="https://altaviatraveluz.netlify.app">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ===================== CSS VARIABLES ===================== */
+:root {
+  --red: #C0392B;
+  --blue: #1A5DAB;
+  --blue-light: #2E86DE;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --dark: #0D0D0D;
+  --dark2: #141414;
+  --dark3: #1E1E1E;
+  --surface: #252525;
+  --surface2: #2E2E2E;
+  --muted: #888;
+  --text: #F0EDE8;
+  --text2: #B8B3AB;
+  --white: #FFFFFF;
+  --payme-blue: #00AAFF;
+  --ff-title: 'Times New Roman', Times, serif;
+  --ff-body: 'DM Sans', sans-serif;
+  --ff-accent: 'Cormorant Garamond', serif;
+  --radius: 14px;
+  --shadow: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* ===================== RESET ===================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--dark);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-weight: 300;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+ul { list-style: none; }
+button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+/* ===================== SCROLLBAR ===================== */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--dark); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+/* ===================== NAVBAR ===================== */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5%;
+  height: 70px;
+  transition: background 0.4s, box-shadow 0.4s;
+}
+#navbar.scrolled {
+  background: rgba(13,13,13,0.96);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.6);
+}
+.nav-logo {
+  font-family: var(--ff-title);
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.nav-logo span.alt { color: var(--red); }
+.nav-logo span.avia { color: var(--blue-light); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.nav-links a {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text2);
+  transition: color 0.25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+
+/* Language Switcher */
+.lang-switcher { display: flex; gap: 4px; }
+.lang-btn {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 20px;
+  border: 1px solid var(--surface2);
+  color: var(--muted);
+  transition: all 0.25s;
+  background: transparent;
+}
+.lang-btn.active, .lang-btn:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Nav */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 70px; left: 0; right: 0;
+  background: rgba(13,13,13,0.98);
+  backdrop-filter: blur(20px);
+  padding: 2rem 5%;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 999;
+  border-top: 1px solid var(--surface);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text2);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ===================== HERO ===================== */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 7%;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,93,171,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 50% at 20% 80%, rgba(192,57,43,0.12) 0%, transparent 60%),
+    linear-gradient(160deg, #0a0a0a 0%, #111520 50%, #0d0d0d 100%);
+}
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
+}
+
+.hero-content { position: relative; z-index: 2; max-width: 700px; }
+
+.hero-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+}
+
+.hero-title {
+  font-family: var(--ff-title);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+.hero-title .alt { color: var(--red); }
+.hero-title .avia { color: var(--blue-light); }
+
+.hero-slogan {
+  font-family: var(--ff-accent);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text2);
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+.btn-primary {
+  padding: 14px 36px;
+  background: var(--gold);
+  color: var(--dark);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+}
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+}
+.btn-outline {
+  padding: 14px 36px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+.btn-outline:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* Hero Socials */
+.hero-socials {
+  position: absolute;
+  bottom: 3rem;
+  left: 7%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.hero-socials-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-socials a {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+.hero-socials a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  transform: translateY(-3px);
+}
+.hero-socials svg { width: 16px; height: 16px; fill: currentColor; }
+
+/* Hero decorative number */
+.hero-deco {
+  position: absolute;
+  right: 5%; /* Adjust distance from right */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1; /* Sits behind the text content but above the grid */
+  pointer-events: none; /* Allows clicks to pass through to buttons */
+}
+
+.hero-bg-logo {
+  height: 50vh; /* Makes it large like the MRB text */
+  width: auto;
+  opacity: 0.6; /* This gives it that subtle "aesthetic" look */
+  filter: grayscale(0%) brightness(0.8); /* Matches a dark theme better */
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  right: 7%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(0.7); }
+}
+
+/* ===================== SECTION SHARED ===================== */
+section { padding: 100px 7%; }
+.section-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 25px; height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--ff-accent);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+.section-sub {
+  color: var(--text2);
+  font-weight: 300;
+  max-width: 560px;
+  margin-bottom: 3.5rem;
+  font-size: 0.95rem;
+}
+
+/* ===================== TOURS ===================== */
+#tours { background: var(--dark2); }
+
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.tour-card {
+  position: relative;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.04);
+  transition: transform 0.35s, box-shadow 0.35s;
+  cursor: pointer;
+}
+.tour-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.tour-img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+.tour-card:hover .tour-img { transform: scale(1.05); }
+
+.tour-img-wrap { overflow: hidden; position: relative; }
+.tour-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.tour-body { padding: 1.4rem; }
+.tour-name {
+  font-family: var(--ff-accent);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.tour-desc {
+  font-size: 0.83rem;
+  color: var(--text2);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.tour-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.tour-price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+.tour-price span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--muted);
+}
+.tour-duration {
+  font-size: 0.78rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tour-book-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 11px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+.tour-book-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+/* ===================== MODAL ===================== */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: var(--dark3);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  animation: modalIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.85) translateY(30px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.modal-header {
+  padding: 1.8rem 2rem 1.2rem;
+  border-bottom: 1px solid var(--surface2);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.modal-tour-name {
+  font-family: var(--ff-accent);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.modal-price {
+  color: var(--gold);
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.modal-close {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  font-size: 1.1rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.modal-close:hover { background: var(--red); color: white; }
+
+.modal-body { padding: 1.5rem 2rem 2rem; }
+
+.form-group { margin-bottom: 1.2rem; }
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.45rem;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-size: 0.9rem;
+  transition: border-color 0.25s;
+  outline: none;
+  -webkit-appearance: none;
+}
+.form-group input::placeholder { color: var(--muted); }
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--gold);
+}
+.form-group select option { background: var(--dark3); }
+
+/* Payment Methods */
+.payment-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.7rem;
+  display: block;
+}
+.payment-methods {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.pay-btn {
+  flex: 1;
+  min-width: 120px;
+  padding: 12px 10px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.pay-btn.click-pay {
+  background: rgba(0, 100, 255, 0.12);
+  border-color: rgba(0, 100, 255, 0.25);
+  color: #4499FF;
+}
+.pay-btn.click-pay:hover, .pay-btn.click-pay.selected {
+  background: rgba(0, 100, 255, 0.22);
+  border-color: #0064FF;
+  color: #fff;
+}
+.pay-btn.payme-pay {
+  background: rgba(0, 170, 255, 0.1);
+  border-color: rgba(0, 170, 255, 0.2);
+  color: var(--payme-blue);
+}
+.pay-btn.payme-pay:hover, .pay-btn.payme-pay.selected {
+  background: rgba(0, 170, 255, 0.22);
+  border-color: var(--payme-blue);
+  color: #fff;
+}
+.pay-btn.paypal-pay {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: var(--text2);
+}
+.pay-btn.paypal-pay:hover, .pay-btn.paypal-pay.selected {
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.35);
+  color: #fff;
+}
+.pay-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+}
+/* PayPal placeholder icon */
+.pay-icon svg { width: 22px; height: 22px; fill: currentColor; }
+
+.modal-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--dark);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 12px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+}
+.modal-submit:hover { opacity: 0.88; transform: translateY(-2px); }
+
+/* ===================== DESTINATIONS ===================== */
+#destinations { background: var(--dark); }
+
+.dest-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.dest-tab {
+  padding: 9px 22px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  border: 1px solid var(--surface2);
+  transition: all 0.25s;
+}
+.dest-tab.active, .dest-tab:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
+.dest-card {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  height: 320px;
+  cursor: pointer;
+}
+.dest-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+.dest-card:hover img { transform: scale(1.08); }
+.dest-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.4rem;
+}
+.dest-card-name {
+  font-family: var(--ff-accent);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+.dest-card-sub {
+  font-size: 0.78rem;
+  color: var(--text2);
+}
+.dest-card-tag {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--text2);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+.dest-card.large {
+  grid-column: span 2;
+}
+@media (max-width: 700px) {
+  .dest-card.large { grid-column: span 1; }
+}
+
+/* ===================== ABOUT ===================== */
+#about {
+  background: var(--dark2);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.about-img-wrap {
+  position: relative;
+}
+.about-img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 20px;
+  filter: brightness(0.85);
+}
+.about-img-badge {
+  position: absolute;
+  bottom: -1.5rem;
+  right: -1.5rem;
+  background: var(--gold);
+  color: var(--dark);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+.about-img-badge strong {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: var(--ff-title);
+}
+.about-img-badge span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+.stat-box {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 1.2rem;
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.stat-num {
+  font-family: var(--ff-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+@media (max-width: 900px) {
+  #about {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .about-img-badge { right: 1rem; }
+}
+
+/* ===================== GALLERY ===================== */
+#gallery { background: var(--dark); overflow: hidden; }
+
+.gallery-track-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.gallery-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding-bottom: 0.5rem;
+  cursor: grab;
+}
+.gallery-track::-webkit-scrollbar { display: none; }
+.gallery-track.grabbing { cursor: grabbing; }
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: clamp(250px, 35vw, 380px);
+  height: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+.gallery-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.3s;
+}
+.gallery-item:hover .gallery-item-overlay { background: rgba(0,0,0,0.35); }
+.gallery-expand-icon {
+  opacity: 0;
+  color: white;
+  font-size: 1.5rem;
+  transform: scale(0.6);
+  transition: all 0.3s;
+}
+.gallery-item:hover .gallery-expand-icon { opacity: 1; transform: scale(1); }
+
+.gallery-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+.gallery-arrows { display: flex; gap: 0.7rem; }
+.gallery-arrow {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text2);
+  font-size: 1rem;
+  transition: all 0.25s;
+}
+.gallery-arrow:hover {
+  background: var(--gold);
+  color: var(--dark);
+  border-color: var(--gold);
+}
+.gallery-dots { display: flex; gap: 6px; }
+.gallery-dot {
+  width: 6px; height: 6px;
+  border-radius: 3px;
+  background: var(--surface2);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.gallery-dot.active {
+  width: 24px;
+  background: var(--gold);
+}
+
+/* Lightbox */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.95);
+  z-index: 3000;
+  align-items: center;
+  justify-content: center;
+}
+.lightbox.active { display: flex; }
+.lightbox img {
+  max-width: 90vw;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 8px;
+  animation: lbIn 0.3s ease;
+}
+@keyframes lbIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  background: none; border: none;
+  line-height: 1;
+}
+.lightbox-close:hover { opacity: 1; }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(255,255,255,0.1);
+  border: none;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.2); }
+.lightbox-nav.prev { left: 1.5rem; }
+.lightbox-nav.next { right: 1.5rem; }
+
+/* ===================== FOOTER ===================== */
+footer {
+  background: var(--dark2);
+  border-top: 1px solid var(--surface);
+}
+.footer-top {
+  padding: 5rem 7% 3rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.footer-brand .nav-logo { margin-bottom: 1rem; }
+.footer-desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+.footer-socials { display: flex; gap: 0.7rem; }
+.footer-socials a {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  transition: all 0.25s;
+}
+.footer-socials a:hover { border-color: var(--gold); color: var(--gold); }
+.footer-socials svg { width: 14px; height: 14px; fill: currentColor; }
+
+.footer-col-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+}
+.footer-links li { margin-bottom: 0.6rem; }
+.footer-links a {
+  font-size: 0.85rem;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+.footer-links a:hover { color: var(--text); }
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.contact-icon {
+  flex-shrink: 0;
+  width: 18px;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--surface);
+  padding: 1.5rem 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-copy {
+  font-size: 0.78rem;
+  color: var(--muted);
+}
+.footer-bottom-links { display: flex; gap: 1.5rem; }
+.footer-bottom-links a {
+  font-size: 0.75rem;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+.footer-bottom-links a:hover { color: var(--text); }
+
+@media (max-width: 960px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 580px) {
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+}
+
+/* ===================== SUCCESS STATE ===================== */
+.modal-success {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  gap: 1rem;
+}
+.modal-success.active { display: flex; }
+.success-icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.15);
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+.success-title {
+  font-family: var(--ff-accent);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.success-sub { color: var(--muted); font-size: 0.9rem; }
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  section { padding: 70px 5%; }
+
+  .hero-deco { display: none; }
+  .scroll-hint { display: none; }
+  .hero-socials { left: 5%; bottom: 2rem; }
+
+  .tours-grid { grid-template-columns: 1fr; }
+  .dest-grid { grid-template-columns: 1fr 1fr; }
+  .dest-card { height: 240px; }
+
+  .about-img { height: 340px; }
+
+  .gallery-item { width: 85vw; height: 220px; }
+
+  .lightbox-nav.prev { left: 0.5rem; }
+  .lightbox-nav.next { right: 0.5rem; }
+}
+
+@media (max-width: 480px) {
+  .dest-grid { grid-template-columns: 1fr; }
+  .hero-cta { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; }
+  .payment-methods { flex-direction: column; }
+  .pay-btn { min-width: unset; }
+}
+
+/* ===================== ANIMATIONS ===================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ===================== SECTION SEPARATOR ===================== */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--surface2), transparent);
+}
+
+/* ===================== FORM NOTIFICATION ===================== */
+.form-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== NAVBAR ========== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="alt">Alt</span><span class="avia">Avia</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tours" data-i18n="nav_tours">Turlar</a></li>
+    <li><a href="#destinations" data-i18n="nav_dest">Yo'nalishlar</a></li>
+    <li><a href="#about" data-i18n="nav_about">Biz haqimizda</a></li>
+    <li><a href="#gallery" data-i18n="nav_gallery">Galereya</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Aloqa</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('uz')">UZ</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('ru')">RU</button>
+    </div>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#tours" data-i18n="nav_tours" onclick="closeMobile()">Turlar</a>
+  <a href="#destinations" data-i18n="nav_dest" onclick="closeMobile()">Yo'nalishlar</a>
+  <a href="#about" data-i18n="nav_about" onclick="closeMobile()">Biz haqimizda</a>
+  <a href="#gallery" data-i18n="nav_gallery" onclick="closeMobile()">Galereya</a>
+  <a href="#contact" data-i18n="nav_contact" onclick="closeMobile()">Aloqa</a>
+</div>
+
+<!-- ========== HERO ========== -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-deco">
+    <img src="logo.png" alt="AltAvia Logo" class="hero-bg-logo">
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Travero Group LLC</div>
+    <h1 class="hero-title">
+      <span class="alt">Alt</span><span class="avia">Avia</span>
+    </h1>
+    <p class="hero-slogan" data-i18n="hero_slogan">
+      Har bir sayohat — yangi bir hikoya.<br>Biz siz uchun eng yaxshisini yaratamiz.
+    </p>
+    <div class="hero-cta">
+      <a href="#tours" class="btn-primary" data-i18n="hero_cta1">Turlarni ko'rish</a>
+      <a href="#about" class="btn-outline" data-i18n="hero_cta2">Biz haqimizda</a>
+    </div>
+  </div>
+
+  <!-- Socials -->
+  <div class="hero-socials">
+    <span class="hero-socials-label">Follow</span>
+    <a href="#" aria-label="Instagram" title="Instagram">
+      <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="#" aria-label="Telegram" title="Telegram">
+      <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+    </a>
+    <a href="#" aria-label="Facebook" title="Facebook">
+      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="#" aria-label="YouTube" title="YouTube">
+      <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span data-i18n="scroll">Pastga</span>
+  </div>
+</section>
+
+<!-- ========== TOURS ========== -->
+<section id="tours">
+  <div class="section-eyebrow" data-i18n="tours_eyebrow">Bizning Turlar</div>
+  <h2 class="section-title" data-i18n="tours_title">Orzuingizdagi sayohatni tanlang</h2>
+  <p class="section-sub" data-i18n="tours_sub">Har bir tur sinchkovlik bilan ishlab chiqilgan bo'lib, eng yaxshi tajribani taqdim etadi.</p>
+
+  <div class="tours-grid" id="toursGrid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<!-- ========== DESTINATIONS ========== -->
+<section id="destinations">
+  <div class="section-eyebrow" data-i18n="dest_eyebrow">Yo'nalishlar</div>
+  <h2 class="section-title" data-i18n="dest_title">Dunyoni kashf eting</h2>
+  <p class="section-sub" data-i18n="dest_sub">Shaharlar, kruizlar va maxsus tadbirlar — siz uchun hamma narsa.</p>
+
+  <div class="dest-tabs">
+    <button class="dest-tab active" data-tab="all" data-i18n="dest_all">Hammasi</button>
+    <button class="dest-tab" data-tab="cities" data-i18n="dest_cities">Shaharlar</button>
+    <button class="dest-tab" data-tab="cruises" data-i18n="dest_cruises">Kruizlar</button>
+    <button class="dest-tab" data-tab="events" data-i18n="dest_events">Maxsus tadbirlar</button>
+  </div>
+
+  <div class="dest-grid" id="destGrid">
+    <!-- Injected by JS -->
+  </div>
+</section>
+
+<!-- ========== ABOUT ========== -->
+<section id="about">
+  <div class="about-img-wrap fade-up">
+    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="About Altavia" class="about-img">
+    <div class="about-img-badge">
+      <strong>1</strong>
+      <span data-i18n="about_badge">Yillik tajriba</span>
+    </div>
+  </div>
+  <div class="fade-up">
+    <div class="section-eyebrow" data-i18n="about_eyebrow">Biz haqimizda</div>
+    <h2 class="section-title" data-i18n="about_title">Sayohatni san'atga aylantiramiz</h2>
+    <p style="color:var(--text2); font-size:0.92rem; line-height:1.8; margin-bottom:1rem;" data-i18n="about_p1">
+      AltAvia — 2026-yildan beri O'zbekiston va dunyo bo'ylab sayohatchilarning ishonchli hamrohiga aylangan premium turizm agentligidir.
+    </p>
+    <p style="color:var(--text2); font-size:0.92rem; line-height:1.8; margin-bottom:2rem;" data-i18n="about_p2">
+      Biz har bir mijozning orzusini haqiqatga aylantiramiz — individual yondashuv, sifatli xizmat va unutilmas taassurotlar bilan.
+    </p>
+    <div class="about-stats">
+      <div class="stat-box">
+        <div class="stat-num">0+</div>
+        <div class="stat-label" data-i18n="stat1">Mamnun mijozlar</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">2+</div>
+        <div class="stat-label" data-i18n="stat2">Davlatlar</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">5+</div>
+        <div class="stat-label" data-i18n="stat3">Tur yo'nalishlari</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">24/7</div>
+        <div class="stat-label" data-i18n="stat4">Qo'llab-quvvatlash</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALLERY ========== -->
+<section id="gallery">
+  <div class="section-eyebrow" data-i18n="gallery_eyebrow">Galereya</div>
+  <h2 class="section-title" data-i18n="gallery_title">Sayohat lahzalari</h2>
+  <p class="section-sub" data-i18n="gallery_sub">Bizning mijozlarimiz bilan bo'lgan unutilmas lahzalar.</p>
+
+  <div class="gallery-track-wrap">
+    <div class="gallery-track" id="galleryTrack">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+  <div class="gallery-controls">
+    <div class="gallery-arrows">
+      <button class="gallery-arrow" id="galleryPrev">&#8592;</button>
+      <button class="gallery-arrow" id="galleryNext">&#8594;</button>
+    </div>
+    <div class="gallery-dots" id="galleryDots"></div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo"><span class="alt">Alt</span><span class="avia">avia</span></div>
+      <p class="footer-desc" data-i18n="footer_desc">Premium sayohat tajribalari, dunyo bo'ylab yo'nalishlar va unutilmas taassurotlar.</p>
+      <div class="footer-socials">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="#" aria-label="Telegram">
+          <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-col-title" data-i18n="footer_nav">Sahifalar</div>
+      <ul class="footer-links">
+        <li><a href="#tours" data-i18n="nav_tours">Turlar</a></li>
+        <li><a href="#destinations" data-i18n="nav_dest">Yo'nalishlar</a></li>
+        <li><a href="#about" data-i18n="nav_about">Biz haqimizda</a></li>
+        <li><a href="#gallery" data-i18n="nav_gallery">Galereya</a></li>
+        <li><a href="#contact" data-i18n="nav_contact">Aloqa</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title" data-i18n="footer_services">Xizmatlar</div>
+      <ul class="footer-links">
+        <li><a href="#" data-i18n="serv1">Tur paketlari</a></li>
+        <li><a href="#" data-i18n="serv2">Kruiz sayohatlari</a></li>
+        <li><a href="#" data-i18n="serv3">Maxsus tadbirlar</a></li>
+        <li><a href="#" data-i18n="serv4">Aviachiptalar</a></li>
+        <li><a href="#" data-i18n="serv5">Mehmonxona bronlash</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="footer-col-title" data-i18n="footer_contact">Aloqa</div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span data-i18n="contact_addr">Andijon sh. Toshkent ko'chasi </span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <span>+998 91 618 18 95</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <span>+998 88 455 59 99</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <span>info@altavia.uz</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🕐</span>
+        <span data-i18n="contact_hours">Dush–Shan, 9:00–18:00</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy" data-i18n="footer_copy">© 2026 Rustam Ortiqaliyev . Altavia . Barcha huquqlar himoyalangan.</span>
+    <div class="footer-bottom-links">
+      <a href="#" data-i18n="footer_privacy">Maxfiylik siyosati</a>
+      <a href="#" data-i18n="footer_terms">Foydalanish shartlari</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== MODAL ========== -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal" id="modal">
+    <div id="modalFormWrap">
+      <div class="modal-header">
+        <div>
+          <div class="modal-tour-name" id="modalTourName">Tour Name</div>
+          <div class="modal-price" id="modalTourPrice">$0</div>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label data-i18n="form_name">To'liq ism</label>
+          <input type="text" id="inputName" data-i18n-placeholder="form_name_ph" placeholder="Ism Familiya">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_phone">Telefon raqam</label>
+          <input type="tel" id="inputPhone" data-i18n-placeholder="form_phone_ph" placeholder="+998 XX XXX XX XX">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_email">Email manzil</label>
+          <input type="email" id="inputEmail" data-i18n-placeholder="form_email_ph" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label data-i18n="form_people">Odamlar soni</label>
+          <select id="inputPeople">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5+">5+</option>
+          </select>
+        </div>
+
+        <span class="payment-label" data-i18n="form_payment">To'lov usuli</span>
+        <div class="payment-methods">
+          <button class="pay-btn click-pay" onclick="selectPayment(this,'click')">
+            <div class="pay-icon">
+                <img src="click.png" alt="Click Logo" class="payment-logo">
+              </div>
+            Click
+          </button>
+          <button class="pay-btn payme-pay" onclick="selectPayment(this,'payme')">
+            <div class="pay-icon">
+                <img src="payme.jpg" alt="Click Logo" class="payment-logo">
+              </div>
+            Payme
+          </button>
+          <button class="pay-btn paypal-pay" onclick="selectPayment(this,'paypal')">
+            <div class="pay-icon">
+                <img src="paypal.jpg" alt="Click Logo" class="payment-logo">
+              </div>
+            PayPal
+          </button>
+        </div>
+
+        <button class="modal-submit" onclick="submitBooking()" data-i18n="form_submit">Buyurtma berish</button>
+        <p class="form-note" data-i18n="form_note">Ma'lumotlaringiz xavfsiz saqlanadi va uchinchi shaxslarga berilmaydi.</p>
+      </div>
+    </div>
+    <div class="modal-success" id="modalSuccess">
+      <div class="success-icon">✓</div>
+      <div class="success-title" data-i18n="success_title">Buyurtma qabul qilindi!</div>
+      <p class="success-sub" id="successMsg" data-i18n="success_sub">Tez orada siz bilan bog'lanamiz.</p>
+      <button class="btn-primary" style="margin-top:1rem" onclick="closeModal()" data-i18n="success_close">Yopish</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LIGHTBOX ========== -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <button class="lightbox-nav prev" onclick="lightboxNav(-1)">&#8592;</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav next" onclick="lightboxNav(1)">&#8594;</button>
+</div>
+
+<!-- ========== JAVASCRIPT ========== -->
+<script>
+// ============ TRANSLATIONS ============
+const i18n = {
+  uz: {
+    nav_tours: "Turlar",
+    nav_dest: "Yo'nalishlar",
+    nav_about: "Biz haqimizda",
+    nav_gallery: "Galereya",
+    nav_contact: "Aloqa",
+    hero_eyebrow: "Travero Group LLC",
+    hero_slogan: "Har bir sayohat — yangi bir hikoya.<br>Biz siz uchun eng yaxshisini yaratamiz.",
+    hero_cta1: "Turlarni ko'rish",
+    hero_cta2: "Biz haqimizda",
+    scroll: "Pastga",
+    tours_eyebrow: "Bizning Turlar",
+    tours_title: "Orzuingizdagi sayohatni tanlang",
+    tours_sub: "Har bir tur sinchkovlik bilan ishlab chiqilgan bo'lib, eng yaxshi tajribani taqdim etadi.",
+    dest_eyebrow: "Yo'nalishlar",
+    dest_title: "Dunyoni kashf eting",
+    dest_sub: "Shaharlar, kruizlar va maxsus tadbirlar — siz uchun hamma narsa.",
+    dest_all: "Hammasi",
+    dest_cities: "Shaharlar",
+    dest_cruises: "Kruizlar",
+    dest_events: "Maxsus tadbirlar",
+    about_eyebrow: "Biz haqimizda",
+    about_title: "Sayohatni san'atga aylantiramiz",
+    about_p1: "Altavia — 2026-yildan beri O'zbekiston va dunyo bo'ylab sayohatchilarning ishonchli hamrohiga aylangan premium turizm agentligidir.",
+    about_p2: "Biz har bir mijozning orzusini haqiqatga aylantiramiz — individual yondashuv, sifatli xizmat va unutilmas taassurotlar bilan.",
+    about_badge: "Yillik tajriba",
+    stat1: "Mamnun mijozlar",
+    stat2: "Davlatlar",
+    stat3: "Tur yo'nalishlari",
+    stat4: "Qo'llab-quvvatlash",
+    gallery_eyebrow: "Galereya",
+    gallery_title: "Sayohat lahzalari",
+    gallery_sub: "Bizning mijozlarimiz bilan bo'lgan unutilmas lahzalar.",
+    footer_desc: "Premium sayohat tajribalari, dunyo bo'ylab yo'nalishlar va unutilmas taassurotlar.",
+    footer_nav: "Sahifalar",
+    footer_services: "Xizmatlar",
+    footer_contact: "Aloqa",
+    serv1: "Tur paketlari",
+    serv2: "Kruiz sayohatlari",
+    serv3: "Maxsus tadbirlar",
+    serv4: "Aviachiptalar",
+    serv5: "Mehmonxona bronlash",
+    contact_addr: "Andijon Sh. Toshkent ko'chasi",
+    contact_hours: "Dush–Shan, 9:00–18:00",
+    footer_copy: "© 2026 Altavia. Barcha huquqlar himoyalangan.",
+    footer_privacy: "Maxfiylik siyosati",
+    footer_terms: "Foydalanish shartlari",
+    form_name: "To'liq ism",
+    form_name_ph: "Ism Familiya",
+    form_phone: "Telefon raqam",
+    form_phone_ph: "+998 XX XXX XX XX",
+    form_email: "Email manzil",
+    form_email_ph: "email@example.com",
+    form_people: "Odamlar soni",
+    form_payment: "To'lov usuli",
+    form_submit: "Buyurtma berish",
+    form_note: "Ma'lumotlaringiz xavfsiz saqlanadi va uchinchi shaxslarga berilmaydi.",
+    success_title: "Buyurtma qabul qilindi!",
+    success_sub: "Tez orada siz bilan bog'lanamiz.",
+    success_close: "Yopish",
+    per_person: "/ kishi",
+    days: "kun",
+    book_now: "Hozir bron qiling",
+    badge_popular: "Mashhur",
+    badge_hot: "Issiq taklif",
+    badge_new: "Yangi",
+    badge_premium: "Premium",
+  },
+  en: {
+    nav_tours: "Tours",
+    nav_dest: "Destinations",
+    nav_about: "About Us",
+    nav_gallery: "Gallery",
+    nav_contact: "Contact",
+    hero_eyebrow: "Travero Group LLC",
+    hero_slogan: "Every journey is a new story.<br>We craft the best experiences for you.",
+    hero_cta1: "Explore Tours",
+    hero_cta2: "About Us",
+    scroll: "Scroll",
+    tours_eyebrow: "Our Tours",
+    tours_title: "Choose your dream journey",
+    tours_sub: "Every tour is meticulously crafted to deliver the finest experience.",
+    dest_eyebrow: "Destinations",
+    dest_title: "Discover the World",
+    dest_sub: "Cities, cruises, and special events — everything for you.",
+    dest_all: "All",
+    dest_cities: "Cities",
+    dest_cruises: "Cruises",
+    dest_events: "Special Events",
+    about_eyebrow: "About Us",
+    about_title: "Turning travel into art",
+    about_p1: "Altavia is a premium travel agency, trusted by travelers across Uzbekistan and the world since 2026.",
+    about_p2: "We turn every client's dream into reality — with a personal approach, quality service, and unforgettable memories.",
+    about_badge: "Years Experience",
+    stat1: "Happy Clients",
+    stat2: "Countries",
+    stat3: "Tour Destinations",
+    stat4: "24/7 Support",
+    gallery_eyebrow: "Gallery",
+    gallery_title: "Travel Moments",
+    gallery_sub: "Unforgettable moments shared with our clients.",
+    footer_desc: "Premium travel experiences, global destinations, and lasting impressions.",
+    footer_nav: "Navigation",
+    footer_services: "Services",
+    footer_contact: "Contact",
+    serv1: "Tour Packages",
+    serv2: "Cruise Tours",
+    serv3: "Special Events",
+    serv4: "Flight Tickets",
+    serv5: "Hotel Booking",
+    contact_addr: "Andijan , Tashkent st.",
+    contact_hours: "Mon–Sat, 9:00–18:00",
+    footer_copy: "© 2026 Altavia. All rights reserved.",
+    footer_privacy: "Privacy Policy",
+    footer_terms: "Terms of Use",
+    form_name: "Full Name",
+    form_name_ph: "John Doe",
+    form_phone: "Phone Number",
+    form_phone_ph: "+1 XXX XXX XXXX",
+    form_email: "Email Address",
+    form_email_ph: "email@example.com",
+    form_people: "Number of People",
+    form_payment: "Payment Method",
+    form_submit: "Book Now",
+    form_note: "Your information is kept secure and will not be shared with third parties.",
+    success_title: "Booking Received!",
+    success_sub: "We will get in touch with you shortly.",
+    success_close: "Close",
+    per_person: "/ person",
+    days: "days",
+    book_now: "Book Now",
+    badge_popular: "Popular",
+    badge_hot: "Hot Deal",
+    badge_new: "New",
+    badge_premium: "Premium",
+  },
+  ru: {
+    nav_tours: "Туры",
+    nav_dest: "Направления",
+    nav_about: "О нас",
+    nav_gallery: "Галерея",
+    nav_contact: "Контакты",
+    hero_eyebrow: "Travero Group LLC",
+    hero_slogan: "Каждое путешествие — новая история.<br>Мы создаём лучшее для вас.",
+    hero_cta1: "Смотреть туры",
+    hero_cta2: "О нас",
+    scroll: "Вниз",
+    tours_eyebrow: "Наши Туры",
+    tours_title: "Выберите путешествие мечты",
+    tours_sub: "Каждый тур тщательно разработан для лучшего опыта.",
+    dest_eyebrow: "Направления",
+    dest_title: "Откройте мир",
+    dest_sub: "Города, круизы и специальные мероприятия — всё для вас.",
+    dest_all: "Все",
+    dest_cities: "Города",
+    dest_cruises: "Круизы",
+    dest_events: "Спец. мероприятия",
+    about_eyebrow: "О нас",
+    about_title: "Превращаем путешествия в искусство",
+    about_p1: "Altavia — премиум туристическое агентство, которому доверяют путешественники Узбекистана и всего мира с 2026 года.",
+    about_p2: "Мы воплощаем мечты каждого клиента — с индивидуальным подходом, высоким сервисом и незабываемыми впечатлениями.",
+    about_badge: "Лет опыта",
+    stat1: "Довольных клиентов",
+    stat2: "Стран",
+    stat3: "Направлений",
+    stat4: "Поддержка 24/7",
+    gallery_eyebrow: "Галерея",
+    gallery_title: "Моменты путешествий",
+    gallery_sub: "Незабываемые моменты вместе с нашими клиентами.",
+    footer_desc: "Премиальные путешествия, направления по всему миру и незабываемые впечатления.",
+    footer_nav: "Навигация",
+    footer_services: "Услуги",
+    footer_contact: "Контакты",
+    serv1: "Туристические пакеты",
+    serv2: "Круизы",
+    serv3: "Спец. мероприятия",
+    serv4: "Авиабилеты",
+    serv5: "Бронирование отелей",
+    contact_addr: "г. Ташкент, ул. Амира Темура, 108",
+    contact_hours: "Пн–Сб, 9:00–18:00",
+    footer_copy: "© 2026 Altavia. Все права защищены.",
+    footer_privacy: "Политика конфиденциальности",
+    footer_terms: "Условия использования",
+    form_name: "Полное имя",
+    form_name_ph: "Иван Иванов",
+    form_phone: "Номер телефона",
+    form_phone_ph: "+7 XXX XXX XXXX",
+    form_email: "Электронная почта",
+    form_email_ph: "email@example.com",
+    form_people: "Количество человек",
+    form_payment: "Способ оплаты",
+    form_submit: "Забронировать",
+    form_note: "Ваши данные надёжно защищены и не передаются третьим лицам.",
+    success_title: "Бронирование принято!",
+    success_sub: "Мы свяжемся с вами в ближайшее время.",
+    success_close: "Закрыть",
+    per_person: "/ чел.",
+    days: "дней",
+    book_now: "Забронировать",
+    badge_popular: "Популярный",
+    badge_hot: "Горящий",
+    badge_new: "Новый",
+    badge_premium: "Премиум",
+  }
+};
+
+let currentLang = 'uz';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    if (b.textContent.trim().toLowerCase() === lang) b.classList.add('active');
+  });
+  applyTranslations();
+  renderTours();
+  renderDestinations();
+}
+
+function t(key) {
+  return i18n[currentLang][key] || i18n['uz'][key] || key;
+}
+
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const val = t(key);
+    if (val) el.innerHTML = val;
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = t(key);
+  });
+}
+
+// ============ TOUR DATA ============
+const tours = [
+  {
+    id: 1,
+    name: { uz: "Dubay Sarguzashti", en: "Dubai Adventure", ru: "Приключение в Дубае" },
+    desc: { uz: "Muhtasham osmono'par binolar va oltin qumloqlar shahri.", en: "City of stunning skyscrapers and golden beaches.", ru: "Город потрясающих небоскрёбов и золотых пляжей." },
+    price: 1299,
+    days: 7,
+    badge: "badge_popular",
+    img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80"
+  },
+  {
+    id: 2,
+    name: { uz: "Turkiya Sayohati", en: "Turkey Journey", ru: "Путешествие в Турцию" },
+    desc: { uz: "Tariх va zamonaviylikning uyg'unligi, mo'l-ko'l tabiат.", en: "History meets modernity amid breathtaking nature.", ru: "История и современность среди захватывающей природы." },
+    price: 899,
+    days: 10,
+    badge: "badge_hot",
+    img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80"
+  },
+  {
+    id: 3,
+    name: { uz: "Italiya Turu", en: "Italy Tour", ru: "Тур в Италию" },
+    desc: { uz: "Rim, Venetsiya, Florensiya — buyuk sivilizatsiya izi.", en: "Rome, Venice, Florence — traces of great civilization.", ru: "Рим, Венеция, Флоренция — следы великой цивилизации." },
+    price: 1599,
+    days: 12,
+    badge: "badge_premium",
+    img: "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=600&q=80"
+  },
+  {
+    id: 4,
+    name: { uz: "Bali Jannatи", en: "Bali Paradise", ru: "Рай Бали" },
+    desc: { uz: "Tropik jannat, rang-barang madaniyat va tinch okean.", en: "Tropical paradise, vibrant culture and peaceful ocean.", ru: "Тропический рай, яркая культура и тихий океан." },
+    price: 1099,
+    days: 9,
+    badge: "badge_new",
+    img: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80"
+  },
+  {
+    id: 5,
+    name: { uz: "Parij Romantikasi", en: "Paris Romance", ru: "Романтика Парижа" },
+    desc: { uz: "Sevgi shahri, san'at va buyuk arxitektura.", en: "City of love, art and grand architecture.", ru: "Город любви, искусства и величественной архитектуры." },
+    price: 1799,
+    days: 8,
+    badge: "badge_popular",
+    img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80"
+  },
+  {
+    id: 6,
+    name: { uz: "Yaponiya Kashfiyoti", en: "Japan Discovery", ru: "Открытие Японии" },
+    desc: { uz: "Qadimiy an'analar va futuristik texnologiyalar mamlakati.", en: "Land of ancient traditions and futuristic technology.", ru: "Страна древних традиций и футуристических технологий." },
+    price: 2199,
+    days: 14,
+    badge: "badge_premium",
+    img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80"
+  }
+];
+
+function renderTours() {
+  const grid = document.getElementById('toursGrid');
+  grid.innerHTML = tours.map(tour => `
+    <div class="tour-card fade-up" onclick="openModal(${tour.id})">
+      <div class="tour-img-wrap">
+        <img class="tour-img" src="${tour.img}" alt="${tour.name[currentLang]}" loading="lazy">
+        <div class="tour-badge">${t(tour.badge)}</div>
+      </div>
+      <div class="tour-body">
+        <div class="tour-name">${tour.name[currentLang]}</div>
+        <div class="tour-desc">${tour.desc[currentLang]}</div>
+        <div class="tour-meta">
+          <div class="tour-price">$${tour.price.toLocaleString()} <span>${t('per_person')}</span></div>
+          <div class="tour-duration">📅 ${tour.days} ${t('days')}</div>
+        </div>
+        <button class="tour-book-btn">${t('book_now')}</button>
+      </div>
+    </div>
+  `).join('');
+  observeFadeUp();
+}
+
+// ============ DESTINATIONS ============
+const destinations = [
+  { id: 1, name: { uz: "Paris", en: "Paris", ru: "Париж" }, sub: { uz: "Fransiya • 8 tur", en: "France • 8 tours", ru: "Франция • 8 туров" }, tag: "cities", img: "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80", large: true },
+  { id: 2, name: { uz: "Dubay", en: "Dubai", ru: "Дубай" }, sub: { uz: "BAA • 12 tur", en: "UAE • 12 tours", ru: "ОАЭ • 12 туров" }, tag: "cities", img: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" },
+  { id: 3, name: { uz: "O'rta Yer Kruizi", en: "Med Cruise", ru: "Средиземноморье" }, sub: { uz: "Kruiz • 15 kun", en: "Cruise • 15 days", ru: "Круиз • 15 дней" }, tag: "cruises", img: "https://images.unsplash.com/photo-1548574505-5e239809f769?w=600&q=80" },
+  { id: 4, name: { uz: "Tokio", en: "Tokyo", ru: "Токио" }, sub: { uz: "Yaponiya • 6 tur", en: "Japan • 6 tours", ru: "Япония • 6 туров" }, tag: "cities", img: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" },
+  { id: 5, name: { uz: "Yangi Yil Kechasi", en: "New Year Night", ru: "Новогодняя ночь" }, sub: { uz: "Maxsus tadbir", en: "Special Event", ru: "Спец. мероприятие" }, tag: "events", img: "https://images.unsplash.com/photo-1467810563316-b5476525c0f9?w=600&q=80" },
+  { id: 6, name: { uz: "Karib Kruizi", en: "Caribbean Cruise", ru: "Карибский круиз" }, sub: { uz: "Kruiz • 10 kun", en: "Cruise • 10 days", ru: "Круиз • 10 дней" }, tag: "cruises", img: "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=600&q=80", large: true },
+  { id: 7, name: { uz: "Dubrovnik", en: "Dubrovnik", ru: "Дубровник" }, sub: { uz: "Xorvatiya • 4 tur", en: "Croatia • 4 tours", ru: "Хорватия • 4 тура" }, tag: "cities", img: "https://images.unsplash.com/photo-1555990538-1e32af8acb1a?w=600&q=80" },
+  { id: 8, name: { uz: "Musiqa Festivali", en: "Music Festival", ru: "Музыкальный фестиваль" }, sub: { uz: "Maxsus tadbir", en: "Special Event", ru: "Спец. мероприятие" }, tag: "events", img: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=600&q=80" },
+];
+
+let activeTab = 'all';
+
+function renderDestinations() {
+  const grid = document.getElementById('destGrid');
+  const filtered = activeTab === 'all' ? destinations : destinations.filter(d => d.tag === activeTab);
+  grid.innerHTML = filtered.map(d => `
+    <div class="dest-card${d.large ? ' large' : ''}">
+      <img src="${d.img}" alt="${d.name[currentLang]}" loading="lazy">
+      <div class="dest-card-tag">${t('dest_' + d.tag) || d.tag}</div>
+      <div class="dest-card-overlay">
+        <div class="dest-card-name">${d.name[currentLang]}</div>
+        <div class="dest-card-sub">${d.sub[currentLang]}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+document.querySelectorAll('.dest-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dest-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeTab = btn.dataset.tab;
+    renderDestinations();
+  });
+});
+
+// ============ MODAL ============
+let selectedPayment = '';
+
+function openModal(tourId) {
+  const tour = tours.find(t => t.id === tourId);
+  if (!tour) return;
+  document.getElementById('modalTourName').textContent = tour.name[currentLang];
+  document.getElementById('modalTourPrice').textContent = `$${tour.price.toLocaleString()} ${t('per_person')}`;
+  document.getElementById('modalFormWrap').style.display = '';
+  document.getElementById('modalSuccess').classList.remove('active');
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  selectedPayment = '';
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  applyTranslations();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function selectPayment(btn, method) {
+  selectedPayment = method;
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+}
+
+function submitBooking() {
+  const name = document.getElementById('inputName').value.trim();
+  const phone = document.getElementById('inputPhone').value.trim();
+  const email = document.getElementById('inputEmail').value.trim();
+  if (!name || !phone || !email) {
+    alert(currentLang === 'uz' ? "Iltimos, barcha maydonlarni to'ldiring." : currentLang === 'en' ? "Please fill in all fields." : "Пожалуйста, заполните все поля.");
+    return;
+  }
+  document.getElementById('modalFormWrap').style.display = 'none';
+  document.getElementById('modalSuccess').classList.add('active');
+  applyTranslations();
+}
+
+// ============ GALLERY ============
+const galleryImages = [
+  "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=700&q=80",
+  "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=700&q=80",
+  "https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=700&q=80",
+  "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=700&q=80",
+  "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=700&q=80",
+  "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=700&q=80",
+  "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?w=700&q=80",
+  "https://images.unsplash.com/photo-1548574505-5e239809f769?w=700&q=80",
+];
+
+let currentLbIndex = 0;
+
+function renderGallery() {
+  const track = document.getElementById('galleryTrack');
+  track.innerHTML = galleryImages.map((img, i) => `
+    <div class="gallery-item" onclick="openLightbox(${i})">
+      <img src="${img}" alt="Gallery ${i+1}" loading="lazy">
+      <div class="gallery-item-overlay">
+        <span class="gallery-expand-icon">⤢</span>
+      </div>
+    </div>
+  `).join('');
+
+  const dots = document.getElementById('galleryDots');
+  dots.innerHTML = galleryImages.map((_, i) =>
+    `<div class="gallery-dot${i === 0 ? ' active' : ''}" onclick="scrollGalleryTo(${i})"></div>`
+  ).join('');
+
+  // Drag scroll
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => { isDown = true; track.classList.add('grabbing'); startX = e.pageX - track.offsetLeft; scrollLeft = track.scrollLeft; });
+  track.addEventListener('mouseleave', () => { isDown = false; track.classList.remove('grabbing'); });
+  track.addEventListener('mouseup', () => { isDown = false; track.classList.remove('grabbing'); });
+  track.addEventListener('mousemove', e => { if (!isDown) return; e.preventDefault(); const x = e.pageX - track.offsetLeft; track.scrollLeft = scrollLeft - (x - startX) * 1.5; });
+
+  track.addEventListener('scroll', () => {
+    const w = track.querySelector('.gallery-item').offsetWidth + 16;
+    const idx = Math.round(track.scrollLeft / w);
+    document.querySelectorAll('.gallery-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+  });
+}
+
+function scrollGalleryTo(idx) {
+  const track = document.getElementById('galleryTrack');
+  const item = track.querySelector('.gallery-item');
+  if (!item) return;
+  track.scrollTo({ left: idx * (item.offsetWidth + 16), behavior: 'smooth' });
+}
+
+document.getElementById('galleryPrev').addEventListener('click', () => {
+  const track = document.getElementById('galleryTrack');
+  const item = track.querySelector('.gallery-item');
+  track.scrollBy({ left: -(item.offsetWidth + 16), behavior: 'smooth' });
+});
+document.getElementById('galleryNext').addEventListener('click', () => {
+  const track = document.getElementById('galleryTrack');
+  const item = track.querySelector('.gallery-item');
+  track.scrollBy({ left: item.offsetWidth + 16, behavior: 'smooth' });
+});
+
+function openLightbox(idx) {
+  currentLbIndex = idx;
+  document.getElementById('lightboxImg').src = galleryImages[idx];
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function lightboxNav(dir) {
+  currentLbIndex = (currentLbIndex + dir + galleryImages.length) % galleryImages.length;
+  document.getElementById('lightboxImg').src = galleryImages[currentLbIndex];
+}
+document.getElementById('lightbox').addEventListener('click', e => { if (e.target === document.getElementById('lightbox')) closeLightbox(); });
+
+// ============ NAVBAR SCROLL ============
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ============ MOBILE NAV ============
+function toggleMobile() {
+  const nav = document.getElementById('mobileNav');
+  const ham = document.getElementById('hamburger');
+  nav.classList.toggle('open');
+  ham.classList.toggle('open');
+}
+function closeMobile() {
+  document.getElementById('mobileNav').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// ============ FADE UP OBSERVER ============
+function observeFadeUp() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+}
+
+// ============ INIT ============
+renderTours();
+renderDestinations();
+renderGallery();
+applyTranslations();
+observeFadeUp();
+
+// Keyboard lightbox navigation
+document.addEventListener('keydown', e => {
+  if (document.getElementById('lightbox').classList.contains('active')) {
+    if (e.key === 'ArrowLeft') lightboxNav(-1);
+    if (e.key === 'ArrowRight') lightboxNav(1);
+    if (e.key === 'Escape') closeLightbox();
+  }
+  if (document.getElementById('modalOverlay').classList.contains('active') && e.key === 'Escape') closeModal();
+});
+</script>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Altavia Travel",
+    "image": "https://altaviatraveluz.netlify.app/logo.png",
+    "@id": "https://altaviatraveluz.netlify.app",
+    "url": "https://altaviatraveluz.netlify.app",
+    "telephone": "+998916181895",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Toshkent ko'chasi",
+      "addressLocality": "Andijon",
+      "addressCountry": "UZ"
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://instagram.com/altaviauz", 
+      "https://t.me/altavia_uz"
+    ]
+  }
+  </script>
+</body>
+</html>
