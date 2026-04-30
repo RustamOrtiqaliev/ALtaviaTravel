@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Altavia Travel - Sayohat va Chiptalar | O'zbekiston</title>
 <meta name="description" content="Altavia Travel — O'zbekistondagi premium turizm agentligi. Antaliya, Dubay va dunyo bo'ylab unutilmas sayohatlar va arzon aviachiptalar.">
-
+<link rel="icon" type="image/png" href="logo.png">
 <meta property="og:title" content="Altavia Travel - Sayohat va Chiptalar">
 <meta property="og:description" content="Orzuingizdagi sayohatni biz bilan boshlang.">
 <meta property="og:image" content="https://altaviatraveluz.netlify.app/logo.jpg"> <meta property="og:url" content="https://altaviatraveluz.netlify.app">
@@ -58,6 +58,93 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--dark); }
 ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+
+
+/* ===================== LOCATION / MAP ===================== */
+#location {
+  background: var(--dark2);
+  padding: 100px 7%;
+}
+
+.location-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.location-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.location-contact-items { display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; }
+
+.location-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--text2);
+}
+.location-contact-item .loc-icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  background: rgba(201,168,76,0.1);
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  color: var(--gold);
+}
+.location-contact-item .loc-text strong {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+
+.map-wrap {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  height: 400px;
+  position: relative;
+}
+.map-wrap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  filter: grayscale(30%) invert(90%) hue-rotate(180deg) brightness(0.85) contrast(0.9);
+}
+/* Dark-themed map label overlay */
+.map-pin-label {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  background: rgba(13,13,13,0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text);
+  pointer-events: none;
+}
+.map-pin-label span { color: var(--gold); font-size: 1rem; }
+
+@media (max-width: 800px) {
+  .location-wrap {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .map-wrap { height: 300px; }
+}
 
 /* ===================== NAVBAR ===================== */
 #navbar {
@@ -1200,16 +1287,14 @@ footer {
   <!-- Socials -->
   <div class="hero-socials">
     <span class="hero-socials-label">Follow</span>
-    <a href="#" aria-label="Instagram" title="Instagram">
+    <a href="https://www.instagram.com/altaviauz/" aria-label="Instagram" title="Instagram">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-    <a href="#" aria-label="Telegram" title="Telegram">
+    <a href="https://t.me/altavia_uz" aria-label="Telegram" title="Telegram">
       <svg viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
     </a>
-    <a href="#" aria-label="Facebook" title="Facebook">
-      <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-    </a>
-    <a href="#" aria-label="YouTube" title="YouTube">
+   
+    <a href="https://www.youtube.com/redirect?event=channel_header&redir_token=QUFFLUhqbm9fcl85UW04TkI0N2RzdmlSSFg0eDBOWlgzUXxBQ3Jtc0tuNWE1MkhkYk1RbkRLYjR6YzM2cVhKNFZ3TDcwSW1FVC0xd2F4RVlyYWFRVEpFcVk4UUlScGY4amZwcDFlTWdPekxHUHZER2hEbWM4STZRLUhteHYwbGlSZE01OWMxRDFnOExLWXJ2bmNIeUVweklpWQ&q=https%3A%2F%2Fwww.instagram.com%2Frookiestack%2F%3Futm_source%3Dig_web_button_share_sheet" aria-label="YouTube" title="YouTube">
       <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
   </div>
@@ -1252,7 +1337,7 @@ footer {
 <!-- ========== ABOUT ========== -->
 <section id="about">
   <div class="about-img-wrap fade-up">
-    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&q=80" alt="About Altavia" class="about-img">
+    <img src="us.jpg" alt="About Altavia" class="about-img">
     <div class="about-img-badge">
       <strong>1</strong>
       <span data-i18n="about_badge">Yillik tajriba</span>
@@ -1305,6 +1390,64 @@ footer {
       <button class="gallery-arrow" id="galleryNext">&#8594;</button>
     </div>
     <div class="gallery-dots" id="galleryDots"></div>
+  </div>
+</section>
+<!-- ========== LOCATION / MAP ========== -->
+<section id="location">
+  <div class="section-eyebrow" data-i18n="nav_contact">Aloqa</div>
+  <h2 class="section-title">Manzil:</h2>
+
+  <div class="location-wrap">
+
+    <!-- Office Info -->
+    <div class="location-info fade-up">
+      
+      <div class="location-contact-items">
+        <div class="location-contact-item">
+          <div class="loc-icon">📍</div>
+          <div class="loc-text">
+            <strong data-i18n="footer_contact">Manzil</strong>
+            Andijon sh. Toshkent ko'chasi
+          </div>
+        </div>
+        <div class="location-contact-item">
+          <div class="loc-icon">📞</div>
+          <div class="loc-text">
+            <strong>Telefon</strong>
+            +998 91 618 18 95<br>+998 88 455 59 99
+          </div>
+        </div>
+        <div class="location-contact-item">
+          <div class="loc-icon">ceo</div>
+          <div class="loc-text">
+            <strong>Tasischi</strong>
+            Boburmirzo Khudoynazarov | Travero Group MCHJ
+          </div>
+        </div>
+        <div class="location-contact-item">
+          <div class="loc-icon">🕐</div>
+          <div class="loc-text">
+            <strong data-i18n="contact_hours">Ish vaqti</strong>
+            Dushanba – Shanba, 9:00 – 18:00
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Map -->
+    <div class="map-wrap fade-up">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d748.8!2d72.363803!3d40.748191!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDDCsDQ0JzUzLjUiTiA3MsKwMjEnNDkuNyJF!5e0!3m2!1sen!2sus!4v1700000000000"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Altavia Travel Office Location">
+      </iframe>
+      <div class="map-pin-label">
+        <span>📍</span> Altavia Travel — Andijon
+      </div>
+    </div>
+
   </div>
 </section>
 
